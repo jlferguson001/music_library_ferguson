@@ -3,8 +3,10 @@ import { useState } from "react";
         let [searchTerm, setSearchTerm]= useState('')
 
         return (
-            <form>
-                <input type='text' placeholder='Enter a search term here!' />
+            <form onSubmit = {(e) => props.handleSearch(e, searchTerm)}>
+
+                <input type='text' placeholder='Enter a search term here!' 
+                onChange={(e) => setSearchTerm(e.target.value)} />
                 <button>Click Here to find your music!</button>
             </form>
         )
