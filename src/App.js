@@ -36,29 +36,27 @@ function App() {
     }
   };
 
-   return (
-    <div className="App">
+  return (
+    <div>
       {message}
       <Router>
-        <Route exact path={'/'}>
-          <SearchContext.Provider value={{term: searchInput, handleSearch: handleSearch}}>
-            <SearchBar />
-          </SearchContext.Provider>
-            <DataContext.Provider value={data}>
-              {renderGallery()}
-            </DataContext.Provider>
-        </Route>
-        <Route path="/album/:id">
-          <AlbumView />
-        </Route>
-        <Route path="/artist/:id">
-          <ArtistView />
-        </Route>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <SearchBar handleSearch={handleSearch} />
+                {/* <Gallery data={data} /> */}
+                {renderGallery()}
+              </>
+            }
+          />
+          <Route path="/album/:id" element={<AlbumView />} />
+          <Route path="/artist/:id" element={<ArtistView />} />
+        </Routes>
       </Router>
     </div>
-   )
-     
-  
+  );
 }
 
 export default App;
